@@ -1,0 +1,130 @@
+======================================================
+HABSAT LOG ANALYSIS TOOL v0.3.3
+======================================================
+
+
+LOG QUALITY
+------------------------------------------------------
+Displays the total number of log entries, including
+with missing GPS location or GPS time data. A lost GPS
+or time lock indicates a transition from having a lock
+to losing one. Ideally this should not happen. Record
+gaps are gaps in entries longer than 30 seconds and
+can indicate missed telemetry packets or power losses,
+depending on the source of the log.
+------------------------------------------------------
+records           : 1,579
+records with GPS  : 1,579 (100.0%)
+records with time : 1,579 (100.0%)
+GPS locks lost    : 0
+time locks lost   : 0
+record gaps       : 2
+
+
+TELEMETRY
+------------------------------------------------------
+Displays the highest telemetry packet sequence number
+and the highest image capture number in the log.
+Actual number of transmitted telemetry packets or
+image captures could be higher since these do not
+persist across power cycles.
+------------------------------------------------------
+max seq number    : 1,111
+max img number    : 338
+
+
+HEALTH AND CONDITIONS
+------------------------------------------------------
+Displays minimum and maximum temperature and battery
+voltages, including battery voltage upon landing.
+Longest up time refers to the longest uninterrupted
+period of time that the HabSat was online.
+------------------------------------------------------
+min battery       : 3,429 mV
+max battery       : 4,061 mV
+battery on land   : 3,805 mV
+min internal temp : -20 C
+max internal temp : 30 C
+longest up time   : 03h 42m 13s
+
+
+PERIPHERAL FAILURES
+------------------------------------------------------
+A peripheral failure is any period of time over which
+a peripheral is reported to be functioning improperly.
+Peripherals can be reported to fail more than once if
+they recover and subsequently fail again.
+------------------------------------------------------
+camera failures   : 0
+disk failures     : 0
+IMU failures      : 0
+env failures      : 0
+
+
+REBOOT EVENTS
+------------------------------------------------------
+Displays reboot or reboot counter reset events.
+Ideally, no such events should take place in-flight.
+It is part of the normal operating procedure for at
+least one reboot and one reset event to occur during
+prelaunch.
+------------------------------------------------------
+
+
+LAUNCH AND ASCENT
+------------------------------------------------------
+Launch is detected when ascent rate exceeds 1.5 m/s
+for 3 consecutive entries. Ascent ends when the
+maximum recorded altitude has been reached. Ascent
+rate is the average ascent rate over that period.
+------------------------------------------------------
+launch time       : 2026-11-15 10:40:02 UTC
+ascent rate       : 5.4 m/s
+ascent duration   : 01h 27m 15s
+
+
+BURST
+------------------------------------------------------
+Burst is considered to occur when the maximum recorded
+altitude has been reached.
+------------------------------------------------------
+burst time        : 2026-11-15 12:07:17 UTC
+burst altitude    : 29,759 m
+
+
+DESCENT PROFILE
+------------------------------------------------------
+Descent rate is non-linear and is reported in bins
+grouped by altitude. Descent ends when the descent
+rate falls below 1.0 m/s for 3 consecutive entries.
+Note that GPS altitude can be noisy and that outliers
+are not removed.
+------------------------------------------------------
+altitude (km)   avg (m/s)    min (m/s)    max (m/s)
+------------------------------------------------------
+25 - 30         27.2         10.3         32.8
+20 - 25         19.4         14.0         26.0
+15 - 20         11.1         8.5          14.8
+10 - 15         7.0          3.5          8.8
+5  - 10         5.4          4.7          6.2
+0  - 5          4.5          0.1          6.2
+
+
+FLIGHT AND LANDING
+------------------------------------------------------
+Landing is detected when descent rate falls below 1.0
+m/s for 3 consecutive entries. Flight distance is
+the straight-line distance between the launch and
+landing locations. Ground track is the total length of
+the path travelled from launch to landing.
+------------------------------------------------------
+descent duration  : 01h 08m 48s
+landing time      : 2026-11-15 13:16:05 UTC
+flight distance   : 81,151 m
+ground track      : 98,665 m
+flight duration   : 02h 36m 03s
+
+
+======================================================
+END OF REPORT
+======================================================
