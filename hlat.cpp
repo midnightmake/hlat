@@ -304,6 +304,8 @@ void generateReport(HabSatLog *log)
 	int gpsBreaks;
 	int timeBreaks;
 	int recordGaps;
+	vector<chrono::sys_seconds> recordGapTimes;
+	vector<int> recordGapLengths;
 
 	// peripheral status tracking
 	uint8_t oldStatus;
@@ -422,6 +424,8 @@ void generateReport(HabSatLog *log)
 		if(log -> lines[i] -> hasTimeData && log -> lines[i - 1] -> hasTimeData &&
 		   chrono::duration<double>(log -> lines[i] -> dateTime - log -> lines[i - 1] -> dateTime).count() > LOG_GAP_THRESHOLD)
 		{
+			recordGapTimes.push_back(log -> lines[i - 1] -> dateTime);
+			recordGapLengths.push_back((int)chrono::duration<double>(log -> lines[i] -> dateTime - log -> lines[i - 1] -> dateTime).count());
 			++ recordGaps;
 		}
 
@@ -593,9 +597,13 @@ void generateReport(HabSatLog *log)
 		cout << "with missing GPS location or GPS time data. A lost GPS" << endl;
 		cout << "or time lock indicates a transition from having a lock" << endl;
 		cout << "to losing one. Ideally this should not happen. Record " << endl;
-		cout << "gaps are gaps in entries longer than " << LOG_GAP_THRESHOLD << " seconds and   " << endl;
-		cout << "can indicate missed telemetry packets or power losses," << endl;
-		cout << "depending on the source of the log." << endl;
+		cout << "gaps are gaps in entries longer than " << LOG_GAP_THRESHOLD << " seconds. Note" << endl;
+		cout << "that telemetry gaps towards the end of a flight are" << endl;
+		cout << "usually caused by a landed HabSat having its signal" << endl;
+		cout << "temporarily obstructed by terrain until the Ground" << endl;
+		cout << "Station is brought closer. Logs from the HabSat disk" << endl;
+		cout << "are not subject to this limitation, and gaps in that" << endl;
+		cout << "context can indicate power loss." << endl;
 		cout << "------------------------------------------------------" << endl;
 		cout << "records           : " << commaDelimitNumber(log -> lines.size()) << endl;
 		cout << "records with GPS  : " << commaDelimitNumber(entriesWithGPS) << " (" << fixed << setprecision(1) << (entriesWithGPS * 100.0) / log -> lines.size() << "%)" << endl;
@@ -603,6 +611,13 @@ void generateReport(HabSatLog *log)
 		cout << "GPS locks lost    : " << commaDelimitNumber(gpsBreaks) << endl;
 		cout << "time locks lost   : " << commaDelimitNumber(timeBreaks) << endl;
 		cout << "record gaps       : " << commaDelimitNumber(recordGaps) << endl;
+
+		// print out the gaps
+		for(i = 0; i < recordGaps; ++ i)
+		{
+			cout << " " << setw(3) << (i + 1) << ": " << format("{:%F %T}", recordGapTimes[i]);
+			cout << " (" << formatSeconds(recordGapLengths[i]) << ")" << endl;
+		}
 
 		// telemetry
 		cout << endl << endl;
