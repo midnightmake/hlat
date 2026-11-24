@@ -751,7 +751,11 @@ void generateReport(HabSatLog *log)
 				cout << "m/s for " << NUM_CONSEC_LANDS << " consecutive entries. Flight distance is" << endl;
 				cout << "the straight-line distance between the launch and" << endl;
 				cout << "landing locations. Ground track is the total length of" << endl;
-				cout << "the path travelled from launch to landing." << endl;
+				cout << "the path travelled from launch to landing. Note that" << endl;
+				cout << "when analyzing HabSat Ops CSV files, landing may be" << endl;
+				cout << "erroneously reported later than it actually occurred" << endl;
+				cout << "if telemetry is temporarily lost upon HabSat landing" << endl;
+				cout << "due to signal obstruction." << endl;
 				cout << "------------------------------------------------------" << endl;
 				cout << "descent duration  : " << formatSeconds(chrono::duration<double>(landTime - burstTime).count()) << endl;
 				cout << "landing time      : " << format("{:%F %T}", landTime) << " UTC" << endl;
