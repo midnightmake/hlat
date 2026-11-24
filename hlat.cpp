@@ -14,8 +14,8 @@ using namespace std;
 
 // versioning information
 #define VERSION_MAJOR 0
-#define VERSION_MINOR 8
-#define VERSION_REVISION 2
+#define VERSION_MINOR 9
+#define VERSION_REVISION 1
 
 // minimum log size for stats, although even this small is not really useful
 #define MIN_LOG_SIZE 6
@@ -583,8 +583,12 @@ void generateReport(HabSatLog *log)
 	// print intro and some basic stats
 	cout << endl << endl;
 	cout << "======================================================" << endl;
-	cout << "HABSAT LOG ANALYSIS TOOL v" << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_REVISION << endl;
+	cout << "HABSAT LOG ANALYSIS TOOL (HLAT) v" << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_REVISION << endl;
 	cout << "======================================================" << endl;
+	cout << "A tool for generating summaries of HabSat missions." << endl;
+	cout << "HLAT accepts CSV files from either the HabSat disk or" << endl;
+	cout << "from HabSat Ops." << endl;
+	cout << "------------------------------------------------------" << endl;
 
 	// skip if the log is empty
 	if(log -> lines.size() >= MIN_LOG_SIZE)
