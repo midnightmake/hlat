@@ -1,6 +1,6 @@
 # HabSat Log Analysis Tool
 
-A command-line utility for generating summaries of mission log files. See the `results` directory for example summaries.
+A command-line utility for generating summaries of mission log files. See the `results` directory for example summaries from real HabSat flights.
 
 Please note this is an experimental tool. It performs well on the real flight logs provided, but there may still be bugs.
 
