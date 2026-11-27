@@ -1,6 +1,8 @@
 # HabSat Log Analysis Tool
 
-A command-line utility for generating summaries of mission log files. See the `results` directory for example summaries from real HabSat flights.
+A command-line utility for generating summaries of mission log files.
+
+See the `results` directory for example summaries from real HabSat flights. This includes Mission #7, during which the HabSat got stuck in a tree and was never retrieved. Despite this, our wireless telemetry was so reliable that we were still able to generate a complete analysis of the flight (and we got a bunch of nice thumbnails, too!).
 
 Please note this is an experimental tool. It performs well on the real flight logs provided, but there may still be bugs.
 
